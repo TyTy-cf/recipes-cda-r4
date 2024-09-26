@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,19 +13,18 @@ import java.util.List;
 @Data
 public class Favorite {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
+    @EmbeddedId
+    private FavoriteId id;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "recipe_id", insertable = false, updatable = false)
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
 
 }
