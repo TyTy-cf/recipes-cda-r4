@@ -58,6 +58,9 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private List<RecipeIngredient> recipeIngredients = new ArrayList<>();
 
+    @ManyToMany
+    private List<Tag> tags = new ArrayList<>();
+
     public double getAverageRating() {
         if (comments.isEmpty()) return 0d;
         double avg = 0d;
