@@ -1,4 +1,4 @@
-package fr.cda.recipes.entity;
+package fr.cda.recipes.entity.embedded;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -14,12 +14,12 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class FavoriteId implements Serializable {
+public class UserRecipeId implements Serializable {
 
-    @Column(name = "recipe_id")
-    private String recipeId;
+    @Column(name = "recipe_uuid")
+    private String recipeUuid;
 
-    @Column(name = "user_id")
-    private String userId;
+    @Column(name = "user_uuid")
+    private String userUuid;
 
 }

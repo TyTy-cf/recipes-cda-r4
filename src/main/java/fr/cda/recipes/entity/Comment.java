@@ -1,5 +1,6 @@
 package fr.cda.recipes.entity;
 
+import fr.cda.recipes.entity.embedded.UserRecipeId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +16,8 @@ import java.util.List;
 @Data
 public class Comment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    private UserRecipeId id;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
@@ -28,12 +28,15 @@ public class Comment {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column
+    private LocalDateTime deletedAt;
+
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "recipe_uuid", updatable = false, insertable = false)
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "user_uuid", updatable = false, insertable = false)
     private User user;
 
 }

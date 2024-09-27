@@ -65,7 +65,9 @@ public class Recipe {
         if (comments.isEmpty()) return 0d;
         double avg = 0d;
         for (Comment comment: comments) {
-            avg += comment.getRating();
+            if (comment.getDeletedAt() == null) {
+                avg += comment.getRating();
+            }
         }
         return avg / comments.size();
     }

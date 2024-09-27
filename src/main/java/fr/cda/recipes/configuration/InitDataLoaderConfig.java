@@ -1,5 +1,7 @@
 package fr.cda.recipes.configuration;
 
+import fr.cda.recipes.entity.User;
+import fr.cda.recipes.repository.UserRepository;
 import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,9 +16,11 @@ import java.util.*;
 public class InitDataLoaderConfig implements CommandLineRunner {
 
     private final Faker faker;
+    private UserRepository userRepository;
 
     @Autowired
-    public InitDataLoaderConfig() {
+    public InitDataLoaderConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
         this.faker = new Faker(Locale.of("fr"));
     }
 

@@ -1,5 +1,6 @@
 package fr.cda.recipes.entity;
 
+import fr.cda.recipes.entity.embedded.UserRecipeId;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,14 +15,14 @@ import java.time.LocalDateTime;
 public class Favorite {
 
     @EmbeddedId
-    private FavoriteId id;
+    private UserRecipeId id;
 
     @ManyToOne
-    @JoinColumn(name = "recipe_id", insertable = false, updatable = false)
+    @JoinColumn(name = "recipe_uuid", insertable = false, updatable = false)
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_uuid", insertable = false, updatable = false)
     private User user;
 
     @Column(nullable = false)
